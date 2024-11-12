@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поздравление с Днем Рождения!</title>
+    <style>
+        /* CSS код */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ffafbd, #ffc3a0);
+            font-family: Arial, sans-serif;
+            transition: background 0.5s;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            animation: popUp 1s ease;
+        }
+
+        @keyframes popUp {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #ff6347;
+            margin-bottom: 10px;
+            animation: colorFlash 1s infinite alternate;
+        }
+
+        @keyframes colorFlash {
+            0% {
+                color: #ff6347;
+            }
+
+            50% {
+                color: #ff4500;
+            }
+
+            100% {
+                color: #ffa07a;
+            }
+        }
+
+        p {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+            animation: fadeIn 2.5s ease;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #ff4500;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #surprise p {
+            font-size: 20px;
+            color: #ff4500;
+            animation: blink 1.5s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Конфетти */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6347;
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎉 Туылған күніңмен! 🎉</h1>
+        <p>Әр күніңе қуаныш, сәттілік тілеймін! Барлық армандарың орындалып, әрқашан жаңа белестерді оңай бағындыра бер!
+        </p>
+        <button onclick="startCelebration()">🎈 Happy Birthday to You! 🎈</button>
+        <div id="surprise" class="hidden">
+            <p>🎂 Пусть этот день будет ярким и незабываемым! 🎂</p>
+        </div>
+        <!-- Область для конфетти -->
+        <div id="confetti"></div>
+    </div>
+    <script>
+        // JavaScript код
+        function startCelebration() {
+            // Показываем скрытое сообщение
+            document.getElementById("surprise").classList.toggle("hidden");
+
+            // Меняем фон на более яркий и праздничный
+            document.body.style.background = 'linear-gradient(45deg, #f6d365, #fda085)';
+
+            // Запускаем анимацию конфетти
+            startConfetti();
+        }
+
+        function startConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.classList.add('confetti-piece');
+                confettiPiece.style.left = `${Math.random() * 100}vw`;
+                confettiPiece.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                confettiPiece.style.backgroundColor = getRandomColor();
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#ff6347', '#ffd700', '#87ceeb', '#ff69b4', '#32cd32'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+
+</html>
